@@ -10,6 +10,8 @@ import CustomMenu from './CustomMenu';
 import { updateProject, createNewProject, fetchToken } from '@/lib/actions';
 import { FormState, ProjectInterface, SessionInterface } from '@/common.types';
 import { categoryFilters } from '@/static/constant';
+import Swal from 'sweetalert2'
+
 
 type Props = {
     type: string,
@@ -64,12 +66,25 @@ const ProjectForm = ({ type, session, project }: Props) => {
         setSubmitting(true)
 
         const { token } = await fetchToken()
-
+        console.log("ok");
+        console.log(token);
         try {
             if (type === "create") {
                 await createNewProject(form, session?.user?.id, token)
-
-                router.push("/")
+                Swal.fire({
+                    title: 'Successful!!!!',
+                    text: 'continue to homepage',
+                    icon: 'success',
+                    confirmButtonText: 'Continue'
+                } ).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                       router.push( "/" )
+                    } 
+                  })
+                    
+                 
+               
             }
             
             if (type === "edit") {
