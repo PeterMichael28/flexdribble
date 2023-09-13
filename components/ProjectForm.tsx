@@ -66,8 +66,7 @@ const ProjectForm = ({ type, session, project }: Props) => {
         setSubmitting(true)
 
         const { token } = await fetchToken()
-        console.log("ok");
-        console.log(token);
+        
         try {
             if (type === "create") {
                 await createNewProject(form, session?.user?.id, token)
@@ -89,8 +88,18 @@ const ProjectForm = ({ type, session, project }: Props) => {
             
             if (type === "edit") {
                 await updateProject(form, project?.id as string, token)
-
-                router.push("/")
+                Swal.fire({
+                    title: 'Edit Successful!!!!',
+                    text: 'continue to homepage',
+                    icon: 'success',
+                    confirmButtonText: 'Continue'
+                } ).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                       router.push( "/" )
+                    } 
+                  })
+             
             }
 
         } catch (error) {

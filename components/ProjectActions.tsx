@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { deleteProject, fetchToken } from '@/lib/actions'
-
+import Swal from 'sweetalert2'
 type Props = {
     projectId: string
 }
@@ -23,10 +23,34 @@ const ProjectActions = ({ projectId }: Props) => {
 
         try {
             await deleteProject(projectId, token);
+
+            Swal.fire({
+                title: 'Deleted Successfullly!!!!',
+                text: 'continue',
+                icon: 'success',
+                confirmButtonText: 'Continue'
+            } ).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                   router.push( "/" )
+                } 
+              })
             
-            router.push("/");
+            
         } catch (error) {
             console.error(error)
+            // Swal.fire({
+            //     title: 'Error while deleting, try again later!!!!',
+            //     text: 'continue',
+            //     icon: 'error',
+            //     confirmButtonText: 'Continue'
+            // } ).then((result) => {
+            //     /* Read more about isConfirmed, isDenied below */
+            //     if (result.isConfirmed) {
+            //        router.push( "/" )
+            //     } 
+            //   })
+            
         } finally {
             setIsDeleting(false)
         }

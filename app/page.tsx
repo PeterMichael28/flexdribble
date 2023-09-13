@@ -41,7 +41,7 @@ export default async function Home ({ searchParams: { category, endcursor } }: P
   if (projectsToDisplay.length === 0) {
     return (
       <section className="flexStart flex-col paddings">
-        {/* <Categories /> */}
+        <Categories />
 
         <p className="no-result-text text-center">No projects found, go create some first.</p>
       </section>
@@ -51,7 +51,7 @@ export default async function Home ({ searchParams: { category, endcursor } }: P
 
       return (
     <section className="flexStart flex-col paddings mb-16">
-      {/* <Categories /> */}
+      <Categories />
 
       <section className="projects-grid">
         {projectsToDisplay.map(({ node }: { node: ProjectInterface }) => (
