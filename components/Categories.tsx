@@ -22,7 +22,7 @@ const Categories = () => {
   };
 
   return (
-   <div className="flexBetween w-full gap-5 flex-wrap">
+   <div className="flexBetween w-full gap-4 flex-wrap">
     <ul className="flexCenter gap-2 flex-wrap ">
      {categoryFilters.map((filter) => (
       <li key={filter}>
