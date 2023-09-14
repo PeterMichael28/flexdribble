@@ -2,6 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 import { footerLinks } from '@/static/constant';
 import Link from 'next/link';
+
+
 type Props = {
 title: string,
  links:string[]
@@ -23,7 +25,7 @@ const FooterColumn = ({title,links }: Props) => (
     </div>
 )
 
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
       <footer className='flexStart footer'>
           <div className='flex flex-col gap-12 w-full'>
