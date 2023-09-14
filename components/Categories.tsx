@@ -12,12 +12,18 @@ const Categories = () => {
   const category = searchParams.get("category");
 
   const handleTags = (item: string) => {
-    router.push(`${pathName}?category=${item}`);
+    if ( item === 'All' ) {
+      
+      router.push(`${pathName}`);
+    } else {
+
+      router.push(`${pathName}?category=${item}`);
+    }
   };
 
   return (
    <div className="flexBetween w-full gap-5 flex-wrap">
-    <ul className="flex gap-1 flex-wrap">
+    <ul className="flexCenter gap-2 flex-wrap ">
      {categoryFilters.map((filter) => (
       <li key={filter}>
        <button
